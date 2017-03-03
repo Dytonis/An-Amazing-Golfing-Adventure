@@ -14,14 +14,10 @@ public class Brake : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        print(rigid.velocity.sqrMagnitude);
-
 	    if(IsGrounded())
         {
-            print("true");
-
-            rigid.drag = 5.5f / rigid.velocity.magnitude > 10f ? 10f : 5.5f / rigid.velocity.magnitude;
-            rigid.angularDrag = 5.5f / rigid.velocity.magnitude > 10f ? 10f : 5.5f / rigid.velocity.magnitude;
+            rigid.drag = 0.8f / rigid.velocity.magnitude > 5f ? 5f : 0.8f / rigid.velocity.magnitude;
+            rigid.angularDrag = 0.8f / rigid.velocity.magnitude > 5f ? 5f : 0.8f / rigid.velocity.magnitude;
 
             if(rigid.drag < 0.1f)
             {
@@ -41,6 +37,6 @@ public class Brake : MonoBehaviour {
 
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, 1.1f);
+        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
     }
 }

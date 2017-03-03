@@ -45,16 +45,22 @@ public class CameraOrbit : MonoBehaviour
             AnchorY.transform.localEulerAngles = new Vector3(rotation.y, 0);
         }
 
+        float scrollDelta = 0;
+
+        if (Input.mouseScrollDelta.y > 0)
+            scrollDelta = 1;
+        else if (Input.mouseScrollDelta.y < 0)
+            scrollDelta = -1;
+
         if(Input.mouseScrollDelta.y < 0)
         {
-            print(Input.mouseScrollDelta);
             if (transform.localPosition.z > LimitsScroll.y)
-                transform.Translate(0, 0, Input.mouseScrollDelta.y);
+                transform.Translate(0, 0, scrollDelta / 2);
         }
         else if (Input.mouseScrollDelta.y > 0)
         {
             if (transform.localPosition.z < LimitsScroll.x)
-                transform.Translate(0, 0, Input.mouseScrollDelta.y);
+                transform.Translate(0, 0, scrollDelta / 2);
         }
     }
 }
